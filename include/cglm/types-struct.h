@@ -48,6 +48,9 @@ typedef union vec2s {
     float y;
   };
 #endif
+#ifdef CGLM_VEC2_CLASS_EXTRA
+  CGLM_VEC2_CLASS_EXTRA
+#endif
 } vec2s;
 
 typedef union vec3s {
@@ -58,6 +61,9 @@ typedef union vec3s {
     float y;
     float z;
   };
+#endif
+#ifdef CGLM_VEC3_CLASS_EXTRA
+  CGLM_VEC3_CLASS_EXTRA
 #endif
 } vec3s;
 
@@ -70,6 +76,9 @@ typedef union ivec3s {
     int z;
   };
 #endif
+#ifdef CGLM_VEC3I_CLASS_EXTRA
+  CGLM_VEC3I_CLASS_EXTRA
+#endif
 } ivec3s;
 
 typedef union CGLM_ALIGN_IF(16) vec4s {
@@ -81,6 +90,9 @@ typedef union CGLM_ALIGN_IF(16) vec4s {
     float z;
     float w;
   };
+#endif
+#ifdef CGLM_VEC4_CLASS_EXTRA
+  CGLM_VEC4_CLASS_EXTRA
 #endif
 } vec4s;
 
@@ -99,6 +111,9 @@ typedef union CGLM_ALIGN_IF(16) versors {
     float real;
   };
 #endif
+#ifdef CGLM_VERSORS_CLASS_EXTRA
+  CGLM_VERSORS_CLASS_EXTRA
+#endif
 } versors;
 
 typedef union mat2s {
@@ -109,6 +124,9 @@ typedef union mat2s {
     float m00, m01;
     float m10, m11;
   };
+#endif
+#ifdef CGLM_MAT2_CLASS_EXTRA
+  CGLM_MAT2_CLASS_EXTRA
 #endif
 } mat2s;
 
@@ -122,6 +140,9 @@ typedef union mat3s {
     float m20, m21, m22;
   };
 #endif
+#ifdef CGLM_MAT3_CLASS_EXTRA
+  CGLM_MAT3_CLASS_EXTRA
+#endif
 } mat3s;
 
 typedef union CGLM_ALIGN_MAT mat4s {
@@ -134,6 +155,9 @@ typedef union CGLM_ALIGN_MAT mat4s {
     float m20, m21, m22, m23;
     float m30, m31, m32, m33;
   };
+#endif
+#ifdef CGLM_MAT4_CLASS_EXTRA
+  CGLM_MAT4_CLASS_EXTRA
 #endif
 } mat4s;
 
