@@ -8,39 +8,44 @@
 #ifndef cglm_types_h
 #define cglm_types_h
 
-#if defined(_MSC_VER)
-/* do not use alignment for older visual studio versions */
-#  if _MSC_VER < 1913 /*  Visual Studio 2017 version 15.6  */
-#    define CGLM_ALL_UNALIGNED
-#    define CGLM_ALIGN(X) /* no alignment */
-#  else
-#    define CGLM_ALIGN(X) __declspec(align(X))
-#  endif
-#else
-#  define CGLM_ALIGN(X) __attribute((aligned(X)))
-#endif
 
-#ifndef CGLM_ALL_UNALIGNED
-#  define CGLM_ALIGN_IF(X) CGLM_ALIGN(X)
+#ifdef CGLM_USER_CONFIG
+  #include CGLM_USER_CONFIG
 #else
-#  define CGLM_ALIGN_IF(X) /* no alignment */
-#endif
+  #if defined(_MSC_VER)
+  /* do not use alignment for older visual studio versions */
+  #  if _MSC_VER < 1913 /*  Visual Studio 2017 version 15.6  */
+  #    define CGLM_ALL_UNALIGNED
+  #    define CGLM_ALIGN(X) /* no alignment */
+  #  else
+  #    define CGLM_ALIGN(X) __declspec(align(X))
+  #  endif
+  #else
+  #  define CGLM_ALIGN(X) __attribute((aligned(X)))
+  #endif
 
-#ifdef __AVX__
-#  define CGLM_ALIGN_MAT CGLM_ALIGN(32)
-#else
-#  define CGLM_ALIGN_MAT CGLM_ALIGN(16)
-#endif
+  #ifndef CGLM_ALL_UNALIGNED
+  #  define CGLM_ALIGN_IF(X) CGLM_ALIGN(X)
+  #else
+  #  define CGLM_ALIGN_IF(X) /* no alignment */
+  #endif
 
-#ifdef __GNUC__
-#  define CGLM_ASSUME_ALIGNED(expr, alignment) \
-  __builtin_assume_aligned((expr), (alignment))
-#else
-#  define CGLM_ASSUME_ALIGNED(expr, alignment) (expr)
-#endif
+  #ifdef __AVX__
+  #  define CGLM_ALIGN_MAT CGLM_ALIGN(32)
+  #else
+  #  define CGLM_ALIGN_MAT CGLM_ALIGN(16)
+  #endif
 
-#define CGLM_CASTPTR_ASSUME_ALIGNED(expr, type) \
-  ((type*)CGLM_ASSUME_ALIGNED((expr), __alignof__(type)))
+  #ifdef __GNUC__
+  #  define CGLM_ASSUME_ALIGNED(expr, alignment) \
+    __builtin_assume_aligned((expr), (alignment))
+  #else
+  #  define CGLM_ASSUME_ALIGNED(expr, alignment) (expr)
+  #endif
+
+  #define CGLM_CASTPTR_ASSUME_ALIGNED(expr, type) \
+    ((type*)CGLM_ASSUME_ALIGNED((expr), __alignof__(type)))
+#endif
 
 typedef float                   vec2[2];
 typedef float                   vec3[3];
@@ -52,7 +57,7 @@ typedef CGLM_ALIGN_IF(16) vec2  mat2[2];
 typedef CGLM_ALIGN_MAT    vec4  mat4[4];
 
 /*
-  Important: cglm stores quaternion as [x, y, z, w] in memory since v0.4.0 
+  Important: cglm stores quaternion as [x, y, z, w] in memory since v0.4.0
   it was [w, x, y, z] before v0.4.0 ( v0.3.5 and earlier ). w is real part.
 */
 
