@@ -8,6 +8,17 @@
 #ifndef cglm_types_struct_h
 #define cglm_types_struct_h
 
+#ifdef CGLM_ES2_STRUCT_OVERRIDE
+#include "es2core/es2_types_math.h"
+
+typedef es2::Vec2_t vec2s;
+typedef es2::Vec3_t vec3s;
+typedef es2::Vec4_t vec4s;
+typedef es2::Quat_t versors;
+typedef es2::Mat2_t mat2s;
+typedef es2::Mat3_t mat3s;
+typedef es2::Mat4_t mat4s;
+#else
 #include "types.h"
 
 /*
@@ -160,5 +171,6 @@ typedef union CGLM_ALIGN_MAT mat4s {
   CGLM_MAT4_CLASS_EXTRA
 #endif
 } mat4s;
+#endif
 
 #endif /* cglm_types_struct_h */

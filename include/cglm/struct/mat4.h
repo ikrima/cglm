@@ -53,8 +53,10 @@
 #include "vec4.h"
 #include "vec3.h"
 
+#ifndef CGLM_ES2_STRUCT_OVERRIDE
 #define GLMS_MAT4_IDENTITY_INIT  {GLM_MAT4_IDENTITY_INIT}
 #define GLMS_MAT4_ZERO_INIT      {GLM_MAT4_ZERO_INIT}
+#endif
 
 /* for C only */
 #define GLMS_MAT4_IDENTITY ((mat4s)GLMS_MAT4_IDENTITY_INIT)
@@ -92,7 +94,7 @@ glms_mat4_copy(mat4s mat) {
 }
 
 /*!
- * @brief make given matrix identity. It is identical with below, 
+ * @brief make given matrix identity. It is identical with below,
  *        but it is more easy to do that with this func especially for members
  *        e.g. glm_mat4_identity(aStruct->aMatrix);
  *
@@ -239,7 +241,7 @@ glms_mat4_mulN(mat4s * __restrict matrices[], uint32_t len) {
   for (i = 0; i < len; i++) {
     r = glms_mat4_mul(r, *matrices[i]);
   }
-  
+
   return r;
 }
 
@@ -334,7 +336,7 @@ glms_mat4_transpose(mat4s m) {
  *
  * @param[in] m matrix
  * @param[in] s scalar
- * @returns     matrix    
+ * @returns     matrix
  */
 CGLM_INLINE
 mat4s

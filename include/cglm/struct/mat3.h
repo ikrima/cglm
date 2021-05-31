@@ -38,8 +38,10 @@
 #include "../mat3.h"
 #include "vec3.h"
 
+#ifndef CGLM_ES2_STRUCT_OVERRIDE
 #define GLMS_MAT3_IDENTITY_INIT  {GLM_MAT3_IDENTITY_INIT}
 #define GLMS_MAT3_ZERO_INIT      {GLM_MAT3_ZERO_INIT}
+#endif
 
 /* for C only */
 #define GLMS_MAT3_IDENTITY ((mat3s)GLMS_MAT3_IDENTITY_INIT)
