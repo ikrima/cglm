@@ -23,6 +23,7 @@
    CGLM_INLINE bool  glms_vec2_isinf(vec2s v)
    CGLM_INLINE bool  glms_vec2_isvalid(vec2s v)
    CGLM_INLINE vec2s glms_vec2_sign(vec2s v)
+   CGLM_INLINE vec2s glms_vec2_abs(vec2s v);
    CGLM_INLINE vec2s glms_vec2_sqrt(vec2s v)
  */
 
@@ -178,6 +179,20 @@ vec2s
 glms_vec2_sign(vec2s v) {
   vec2s r;
   glm_vec2_sign(v.raw, r.raw);
+  return r;
+}
+
+/*!
+ * @brief absolute value of each vector item
+ *
+ * @param[in]  v    vector
+ * @return          destination vector
+ */
+CGLM_INLINE
+vec2s
+glms_vec2_abs(vec2s v) {
+  vec2s r;
+  glm_vec2_abs(v.raw, r.raw);
   return r;
 }
 

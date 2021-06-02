@@ -19,6 +19,7 @@
    CGLM_INLINE bool  glm_vec2_isinf(vec2 v);
    CGLM_INLINE bool  glm_vec2_isvalid(vec2 v);
    CGLM_INLINE void  glm_vec2_sign(vec2 v, vec2 dest);
+   CGLM_INLINE void  glm_vec2_abs(vec2 v, vec2 dest);
    CGLM_INLINE void  glm_vec2_sqrt(vec2 v, vec2 dest);
  */
 
@@ -172,6 +173,20 @@ glm_vec2_sign(vec2 v, vec2 dest) {
   dest[0] = glm_signf(v[0]);
   dest[1] = glm_signf(v[1]);
 }
+
+/*!
+ * @brief absolute value of each vector item
+ *
+ * @param[in]  v    vector
+ * @param[out] dest destination vector
+ */
+CGLM_INLINE
+void
+glm_vec2_abs(vec2 v, vec2 dest) {
+  dest[0] = fabsf(v[0]);
+  dest[1] = fabsf(v[1]);
+}
+
 
 /*!
  * @brief square root of each vector item
