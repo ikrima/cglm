@@ -146,7 +146,7 @@ glm_vec2_cross(vec2 a, vec2 b) {
  * @brief norm * norm (magnitude) of vec
  *
  * we can use this func instead of calling norm * norm, because it would call
- * sqrtf fuction twice but with this func we can avoid func call, maybe this is
+ * glm_sqrtf fuction twice but with this func we can avoid func call, maybe this is
  * not good name for this func
  *
  * @param[in] v vector
@@ -169,7 +169,7 @@ glm_vec2_norm2(vec2 v) {
 CGLM_INLINE
 float
 glm_vec2_norm(vec2 vec) {
-  return sqrtf(glm_vec2_norm2(vec));
+  return glm_sqrtf(glm_vec2_norm2(vec));
 }
 
 /*!
@@ -482,8 +482,8 @@ void
 glm_vec2_rotate(vec2 v, float angle, vec2 dest) {
   float c, s, x1, y1;
 
-  c  = cosf(angle);
-  s  = sinf(angle);
+  c  = glm_cosf(angle);
+  s  = glm_sinf(angle);
 
   x1 = v[0];
   y1 = v[1];
@@ -515,7 +515,7 @@ glm_vec2_distance2(vec2 a, vec2 b) {
 CGLM_INLINE
 float
 glm_vec2_distance(vec2 a, vec2 b) {
-  return sqrtf(glm_vec2_distance2(a, b));
+  return glm_sqrtf(glm_vec2_distance2(a, b));
 }
 
 /*!

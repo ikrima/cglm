@@ -19,19 +19,19 @@ glm_ease_linear(float t) {
 CGLM_INLINE
 float
 glm_ease_sine_in(float t) {
-  return sinf((t - 1.0f) * GLM_PI_2f) + 1.0f;
+  return glm_sinf((t - 1.0f) * GLM_PI_2f) + 1.0f;
 }
 
 CGLM_INLINE
 float
 glm_ease_sine_out(float t) {
-  return sinf(t * GLM_PI_2f);
+  return glm_sinf(t * GLM_PI_2f);
 }
 
 CGLM_INLINE
 float
 glm_ease_sine_inout(float t) {
-  return 0.5f * (1.0f - cosf(t * GLM_PIf));
+  return 0.5f * (1.0f - glm_cosf(t * GLM_PIf));
 }
 
 CGLM_INLINE
@@ -160,7 +160,7 @@ glm_ease_exp_in(float t) {
   if (t == 0.0f)
     return t;
 
-  return powf(2.0f,  10.0f * (t - 1.0f));
+  return glm_powf(2.0f,  10.0f * (t - 1.0f));
 }
 
 CGLM_INLINE
@@ -169,7 +169,7 @@ glm_ease_exp_out(float t) {
   if (t == 1.0f)
     return t;
 
-  return 1.0f - powf(2.0f, -10.0f * t);
+  return 1.0f - glm_powf(2.0f, -10.0f * t);
 }
 
 CGLM_INLINE
@@ -179,30 +179,30 @@ glm_ease_exp_inout(float t) {
     return t;
 
   if (t < 0.5f)
-    return 0.5f * powf(2.0f, (20.0f * t) - 10.0f);
+    return 0.5f * glm_powf(2.0f, (20.0f * t) - 10.0f);
 
-  return -0.5f * powf(2.0f, (-20.0f * t) + 10.0f) + 1.0f;
+  return -0.5f * glm_powf(2.0f, (-20.0f * t) + 10.0f) + 1.0f;
 }
 
 CGLM_INLINE
 float
 glm_ease_circ_in(float t) {
-  return 1.0f - sqrtf(1.0f - (t * t));
+  return 1.0f - glm_sqrtf(1.0f - (t * t));
 }
 
 CGLM_INLINE
 float
 glm_ease_circ_out(float t) {
-  return sqrtf((2.0f - t) * t);
+  return glm_sqrtf((2.0f - t) * t);
 }
 
 CGLM_INLINE
 float
 glm_ease_circ_inout(float t) {
   if (t < 0.5f)
-    return 0.5f * (1.0f - sqrtf(1.0f - 4.0f * (t * t)));
+    return 0.5f * (1.0f - glm_sqrtf(1.0f - 4.0f * (t * t)));
 
-  return 0.5f * (sqrtf(-((2.0f * t) - 3.0f) * ((2.0f * t) - 1.0f)) + 1.0f);
+  return 0.5f * (glm_sqrtf(-((2.0f * t) - 3.0f) * ((2.0f * t) - 1.0f)) + 1.0f);
 }
 
 CGLM_INLINE
@@ -254,13 +254,13 @@ glm_ease_back_inout(float t) {
 CGLM_INLINE
 float
 glm_ease_elast_in(float t) {
-  return sinf(13.0f * GLM_PI_2f * t) * powf(2.0f, 10.0f * (t - 1.0f));
+  return glm_sinf(13.0f * GLM_PI_2f * t) * glm_powf(2.0f, 10.0f * (t - 1.0f));
 }
 
 CGLM_INLINE
 float
 glm_ease_elast_out(float t) {
-  return sinf(-13.0f * GLM_PI_2f * (t + 1.0f)) * powf(2.0f, -10.0f * t) + 1.0f;
+  return glm_sinf(-13.0f * GLM_PI_2f * (t + 1.0f)) * glm_powf(2.0f, -10.0f * t) + 1.0f;
 }
 
 CGLM_INLINE
@@ -271,11 +271,11 @@ glm_ease_elast_inout(float t) {
   a = 2.0f * t;
 
   if (t < 0.5f)
-    return 0.5f * sinf(13.0f * GLM_PI_2f * a)
-                * powf(2.0f, 10.0f * (a - 1.0f));
+    return 0.5f * glm_sinf(13.0f * GLM_PI_2f * a)
+                * glm_powf(2.0f, 10.0f * (a - 1.0f));
 
-  return 0.5f * (sinf(-13.0f * GLM_PI_2f * a)
-                 * powf(2.0f, -10.0f * (a - 1.0f)) + 2.0f);
+  return 0.5f * (glm_sinf(-13.0f * GLM_PI_2f * a)
+                 * glm_powf(2.0f, -10.0f * (a - 1.0f)) + 2.0f);
 }
 
 CGLM_INLINE

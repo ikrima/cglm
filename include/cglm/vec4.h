@@ -228,7 +228,7 @@ glm_vec4_dot(vec4 a, vec4 b) {
  * @brief norm * norm (magnitude) of vec
  *
  * we can use this func instead of calling norm * norm, because it would call
- * sqrtf fuction twice but with this func we can avoid func call, maybe this is
+ * glm_sqrtf fuction twice but with this func we can avoid func call, maybe this is
  * not good name for this func
  *
  * @param[in] v vec4
@@ -255,7 +255,7 @@ glm_vec4_norm(vec4 v) {
 #if defined(CGLM_SIMD)
   return glmm_norm(glmm_load(v));
 #else
-  return sqrtf(glm_vec4_dot(v, v));
+  return glm_sqrtf(glm_vec4_dot(v, v));
 #endif
 }
 
@@ -751,7 +751,7 @@ glm_vec4_distance(vec4 a, vec4 b) {
 #elif defined(CGLM_NEON_FP)
   return glmm_norm(vsubq_f32(glmm_load(a), glmm_load(b)));
 #else
-  return sqrtf(glm_pow2(a[0] - b[0])
+  return glm_sqrtf(glm_pow2(a[0] - b[0])
              + glm_pow2(a[1] - b[1])
              + glm_pow2(a[2] - b[2])
              + glm_pow2(a[3] - b[3]));
@@ -998,7 +998,7 @@ CGLM_INLINE
 void
 glm_vec4_smoothinterp(vec4 from, vec4 to, float t, vec4 dest) {
   vec4 s, v;
-    
+
   /* from + smoothstep * (to - from) */
   glm_vec4_broadcast(glm_smooth(t), s);
   glm_vec4_sub(to, from, v);

@@ -92,10 +92,10 @@ glm_vec4_eq(vec4 v, float val) {
 CGLM_INLINE
 bool
 glm_vec4_eq_eps(vec4 v, float val) {
-  return fabsf(v[0] - val) <= GLM_FLT_EPSILON
-         && fabsf(v[1] - val) <= GLM_FLT_EPSILON
-         && fabsf(v[2] - val) <= GLM_FLT_EPSILON
-         && fabsf(v[3] - val) <= GLM_FLT_EPSILON;
+  return glm_fabsf(v[0] - val) <= GLM_FLT_EPSILON
+         && glm_fabsf(v[1] - val) <= GLM_FLT_EPSILON
+         && glm_fabsf(v[2] - val) <= GLM_FLT_EPSILON
+         && glm_fabsf(v[3] - val) <= GLM_FLT_EPSILON;
 }
 
 /*!
@@ -133,10 +133,10 @@ glm_vec4_eqv(vec4 a, vec4 b) {
 CGLM_INLINE
 bool
 glm_vec4_eqv_eps(vec4 a, vec4 b) {
-  return fabsf(a[0] - b[0]) <= GLM_FLT_EPSILON
-         && fabsf(a[1] - b[1]) <= GLM_FLT_EPSILON
-         && fabsf(a[2] - b[2]) <= GLM_FLT_EPSILON
-         && fabsf(a[3] - b[3]) <= GLM_FLT_EPSILON;
+  return glm_fabsf(a[0] - b[0]) <= GLM_FLT_EPSILON
+         && glm_fabsf(a[1] - b[1]) <= GLM_FLT_EPSILON
+         && glm_fabsf(a[2] - b[2]) <= GLM_FLT_EPSILON
+         && glm_fabsf(a[3] - b[3]) <= GLM_FLT_EPSILON;
 }
 
 /*!
@@ -182,7 +182,7 @@ glm_vec4_min(vec4 v) {
 CGLM_INLINE
 bool
 glm_vec4_isnan(vec4 v) {
-  return isnan(v[0]) || isnan(v[1]) || isnan(v[2]) || isnan(v[3]);
+  return glm_isnan(v[0]) || glm_isnan(v[1]) || glm_isnan(v[2]) || glm_isnan(v[3]);
 }
 
 /*!
@@ -194,7 +194,7 @@ glm_vec4_isnan(vec4 v) {
 CGLM_INLINE
 bool
 glm_vec4_isinf(vec4 v) {
-  return isinf(v[0]) || isinf(v[1]) || isinf(v[2]) || isinf(v[3]);
+  return glm_isinf(v[0]) || glm_isinf(v[1]) || glm_isinf(v[2]) || glm_isinf(v[3]);
 }
 
 /*!
@@ -252,10 +252,10 @@ glm_vec4_abs(vec4 v, vec4 dest) {
 #elif defined(CGLM_NEON_FP)
   vst1q_f32(dest, vabsq_f32(vld1q_f32(v)));
 #else
-  dest[0] = fabsf(v[0]);
-  dest[1] = fabsf(v[1]);
-  dest[2] = fabsf(v[2]);
-  dest[3] = fabsf(v[3]);
+  dest[0] = glm_fabsf(v[0]);
+  dest[1] = glm_fabsf(v[1]);
+  dest[2] = glm_fabsf(v[2]);
+  dest[3] = glm_fabsf(v[3]);
 #endif
 }
 
@@ -268,10 +268,10 @@ glm_vec4_abs(vec4 v, vec4 dest) {
 CGLM_INLINE
 void
 glm_vec4_fract(vec4 v, vec4 dest) {
-  dest[0] = fminf(v[0] - floorf(v[0]), 0.999999940395355224609375f);
-  dest[1] = fminf(v[1] - floorf(v[1]), 0.999999940395355224609375f);
-  dest[2] = fminf(v[2] - floorf(v[2]), 0.999999940395355224609375f);
-  dest[3] = fminf(v[3] - floorf(v[3]), 0.999999940395355224609375f);
+  dest[0] = glm_fminf(v[0] - glm_floorf(v[0]), 0.999999940395355224609375f);
+  dest[1] = glm_fminf(v[1] - glm_floorf(v[1]), 0.999999940395355224609375f);
+  dest[2] = glm_fminf(v[2] - glm_floorf(v[2]), 0.999999940395355224609375f);
+  dest[3] = glm_fminf(v[3] - glm_floorf(v[3]), 0.999999940395355224609375f);
 }
 
 /*!
@@ -303,10 +303,10 @@ glm_vec4_sqrt(vec4 v, vec4 dest) {
 #if defined( __SSE__ ) || defined( __SSE2__ )
   glmm_store(dest, _mm_sqrt_ps(glmm_load(v)));
 #else
-  dest[0] = sqrtf(v[0]);
-  dest[1] = sqrtf(v[1]);
-  dest[2] = sqrtf(v[2]);
-  dest[3] = sqrtf(v[3]);
+  dest[0] = glm_sqrtf(v[0]);
+  dest[1] = glm_sqrtf(v[1]);
+  dest[2] = glm_sqrtf(v[2]);
+  dest[3] = glm_sqrtf(v[3]);
 #endif
 }
 

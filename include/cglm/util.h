@@ -109,7 +109,7 @@ glm_make_deg(float *rad) {
 }
 
 /*!
- * @brief multiplies given parameter with itself = x * x or powf(x, 2)
+ * @brief multiplies given parameter with itself = x * x or glm_powf(x, 2)
  *
  * @param[in] x x
  */
@@ -289,7 +289,7 @@ glm_smoothinterpc(float from, float to, float t) {
 CGLM_INLINE
 bool
 glm_eq(float a, float b) {
-  return fabsf(a - b) <= GLM_FLT_EPSILON;
+  return glm_fabsf(a - b) <= GLM_FLT_EPSILON;
 }
 
 /*!

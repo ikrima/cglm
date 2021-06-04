@@ -188,7 +188,7 @@ glms_vec3_dot(vec3s a, vec3s b) {
  * @brief norm * norm (magnitude) of vec
  *
  * we can use this func instead of calling norm * norm, because it would call
- * sqrtf fuction twice but with this func we can avoid func call, maybe this is
+ * glm_sqrtf fuction twice but with this func we can avoid func call, maybe this is
  * not good name for this func
  *
  * @param[in] v vector

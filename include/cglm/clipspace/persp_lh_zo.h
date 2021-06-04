@@ -107,7 +107,7 @@ glm_perspective_lh_zo(float fovy,
 
   glm_mat4_zero(dest);
 
-  f  = 1.0f / tanf(fovy * 0.5f);
+  f  = 1.0f / glm_tanf(fovy * 0.5f);
   fn = 1.0f / (nearZ - farZ);
 
   dest[0][0] = f / aspect;
@@ -145,7 +145,7 @@ glm_persp_move_far_lh_zo(mat4 proj, float deltaFar) {
 
 /*!
  * @brief set up perspective projection matrix with default near/far
- *        and angle values with a left-hand coordinate system and a 
+ *        and angle values with a left-hand coordinate system and a
  *        clip-space of [0, 1].
  *
  * @param[in]  aspect aspect ratio ( width / height )
@@ -176,7 +176,7 @@ glm_perspective_resize_lh_zo(float aspect, mat4 proj) {
 
 /*!
  * @brief decomposes frustum values of perspective projection
- *        with angle values with a left-hand coordinate system and a 
+ *        with angle values with a left-hand coordinate system and a
  *        clip-space of [0, 1].
  *
  * @param[in]  proj    perspective projection matrix
@@ -219,7 +219,7 @@ glm_persp_decomp_lh_zo(mat4 proj,
 
 /*!
  * @brief decomposes frustum values of perspective projection
- *        with angle values with a left-hand coordinate system and a 
+ *        with angle values with a left-hand coordinate system and a
  *        clip-space of [0, 1].
  *        this makes easy to get all values at once
  *
@@ -258,7 +258,7 @@ glm_persp_decomp_x_lh_zo(mat4 proj,
 
 /*!
  * @brief decomposes top and bottom values of perspective projection
- *        with angle values with a left-hand coordinate system and a 
+ *        with angle values with a left-hand coordinate system and a
  *        clip-space of [0, 1].
  *        y stands for y axis (top / bottom axis)
  *
@@ -283,7 +283,7 @@ glm_persp_decomp_y_lh_zo(mat4 proj,
 
 /*!
  * @brief decomposes near and far values of perspective projection
- *        with angle values with a left-hand coordinate system and a 
+ *        with angle values with a left-hand coordinate system and a
  *        clip-space of [0, 1].
  *        z stands for z axis (near / far axis)
  *
@@ -307,7 +307,7 @@ glm_persp_decomp_z_lh_zo(mat4 proj,
 
 /*!
  * @brief decomposes far value of perspective projection
- *        with angle values with a left-hand coordinate system and a 
+ *        with angle values with a left-hand coordinate system and a
  *        clip-space of [0, 1].
  *
  * @param[in]  proj   perspective projection matrix
@@ -321,7 +321,7 @@ glm_persp_decomp_far_lh_zo(mat4 proj, float * __restrict farZ) {
 
 /*!
  * @brief decomposes near value of perspective projection
- *        with angle values with a left-hand coordinate system and a 
+ *        with angle values with a left-hand coordinate system and a
  *        clip-space of [0, 1].
  *
  * @param[in]  proj    perspective projection matrix
@@ -347,7 +347,7 @@ void
 glm_persp_sizes_lh_zo(mat4 proj, float fovy, vec4 dest) {
   float t, a, nearZ, farZ;
 
-  t = 2.0f * tanf(fovy * 0.5f);
+  t = 2.0f * glm_tanf(fovy * 0.5f);
   a = glm_persp_aspect(proj);
 
   glm_persp_decomp_z_lh_zo(proj, &nearZ, &farZ);

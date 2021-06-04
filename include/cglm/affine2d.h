@@ -117,11 +117,11 @@ glm_scale2d_to(mat3 m, vec2 v, mat3 dest) {
   dest[0][0] = m[0][0] * v[0];
   dest[0][1] = m[0][1] * v[0];
   dest[0][2] = m[0][2] * v[0];
-  
+
   dest[1][0] = m[1][0] * v[1];
   dest[1][1] = m[1][1] * v[1];
   dest[1][2] = m[1][2] * v[1];
-  
+
   dest[2][0] = m[2][0];
   dest[2][1] = m[2][1];
   dest[2][2] = m[2][2];
@@ -190,9 +190,9 @@ void
 glm_rotate2d_make(mat3 m, float angle) {
   float c, s;
 
-  s = sinf(angle);
-  c = cosf(angle);
-  
+  s = glm_sinf(angle);
+  c = glm_cosf(angle);
+
   m[0][0] = c;
   m[0][1] = s;
   m[0][2] = 0;
@@ -200,7 +200,7 @@ glm_rotate2d_make(mat3 m, float angle) {
   m[1][0] = -s;
   m[1][1] = c;
   m[1][2] = 0;
-  
+
   m[2][0] = 0.0f;
   m[2][1] = 0.0f;
   m[2][2] = 1.0f;
@@ -221,9 +221,9 @@ glm_rotate2d(mat3 m, float angle) {
         m02 = m[0][2],  m12 = m[1][2];
   float c, s;
 
-  s = sinf(angle);
-  c = cosf(angle);
-  
+  s = glm_sinf(angle);
+  c = glm_cosf(angle);
+
   m[0][0] = m00 * c + m10 * s;
   m[0][1] = m01 * c + m11 * s;
   m[0][2] = m02 * c + m12 * s;
@@ -249,9 +249,9 @@ glm_rotate2d_to(mat3 m, float angle, mat3 dest) {
         m02 = m[0][2],  m12 = m[1][2];
   float c, s;
 
-  s = sinf(angle);
-  c = cosf(angle);
-  
+  s = glm_sinf(angle);
+  c = glm_cosf(angle);
+
   dest[0][0] = m00 * c + m10 * s;
   dest[0][1] = m01 * c + m11 * s;
   dest[0][2] = m02 * c + m12 * s;
@@ -259,7 +259,7 @@ glm_rotate2d_to(mat3 m, float angle, mat3 dest) {
   dest[1][0] = m00 * -s + m10 * c;
   dest[1][1] = m01 * -s + m11 * c;
   dest[1][2] = m02 * -s + m12 * c;
-  
+
   dest[2][0] = m[2][0];
   dest[2][1] = m[2][1];
   dest[2][2] = m[2][2];

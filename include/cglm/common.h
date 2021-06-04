@@ -10,17 +10,11 @@
 
 #ifdef CGLM_USER_CONFIG
   #include CGLM_USER_CONFIG
-
+  #include "es2core/math/es2scalar.h"
+#else
   #ifndef _USE_MATH_DEFINES
     #define _USE_MATH_DEFINES /* for windows */
   #endif
-
-  // #include <stdint.h>
-  // #include <stddef.h>
-  #include <math.h>
-  // #include <float.h>
-  // #include <stdbool.h>
-#else
 
   #ifndef _USE_MATH_DEFINES
   #  define _USE_MATH_DEFINES       /* for windows */
@@ -35,6 +29,20 @@
   #include <math.h>
   #include <float.h>
   #include <stdbool.h>
+
+  #define glm_fabsf(_a)      fabsf(_a)
+  #define glm_isnan(_a)      isnan(_a)
+  #define glm_isinf(_a)      isinf(_a)
+  #define glm_fminf(_a, _b)  fminf(_a, _b)
+  #define glm_floorf(_a)     floorf(_a)
+  #define glm_sqrtf(_a)      sqrtf(_a)
+  #define glm_powf(_a, _b)   powf(_a, _b)
+  #define glm_sinf(_a)       sinf(_a)
+  #define glm_cosf(_a)       cosf(_a)
+  #define glm_tanf(_a)       tanf(_a)
+  #define glm_asinf(_a)      asinf(_a)
+  #define glm_acosf(_a)      acosf(_a)
+  #define glm_atan2f(_a, _b) atan2f(_a, _b)
 
   #if defined(_MSC_VER)
   #  ifdef CGLM_STATIC

@@ -131,7 +131,7 @@ glm_decasteljau(float prm, float p0, float c0, float c1, float p1) {
     f  = (d  + e)  * 0.5f; /* this one is on the curve! */
 
     /* The curve point is close enough to our wanted t */
-    if (fabsf(f - prm) < CGLM_DECASTEL_EPS)
+    if (glm_fabsf(f - prm) < CGLM_DECASTEL_EPS)
       return glm_clamp_zo((u  + v) * 0.5f);
 
     /* dichotomy */

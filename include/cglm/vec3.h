@@ -189,7 +189,7 @@ glm_vec3_dot(vec3 a, vec3 b) {
  * @brief norm * norm (magnitude) of vec
  *
  * we can use this func instead of calling norm * norm, because it would call
- * sqrtf fuction twice but with this func we can avoid func call, maybe this is
+ * glm_sqrtf fuction twice but with this func we can avoid func call, maybe this is
  * not good name for this func
  *
  * @param[in] v vector
@@ -213,7 +213,7 @@ glm_vec3_norm2(vec3 v) {
 CGLM_INLINE
 float
 glm_vec3_norm(vec3 v) {
-  return sqrtf(glm_vec3_norm2(v));
+  return glm_sqrtf(glm_vec3_norm2(v));
 }
 
 /*!
@@ -620,7 +620,7 @@ glm_vec3_angle(vec3 a, vec3 b) {
   else if (dot < -1.0f)
     return CGLM_PI;
 
-  return acosf(dot);
+  return glm_acosf(dot);
 }
 
 /*!
@@ -636,8 +636,8 @@ glm_vec3_rotate(vec3 v, float angle, vec3 axis) {
   vec3   v1, v2, k;
   float  c, s;
 
-  c = cosf(angle);
-  s = sinf(angle);
+  c = glm_cosf(angle);
+  s = glm_sinf(angle);
 
   glm_vec3_normalize_to(axis, k);
 
@@ -765,7 +765,7 @@ glm_vec3_distance2(vec3 a, vec3 b) {
 CGLM_INLINE
 float
 glm_vec3_distance(vec3 a, vec3 b) {
-  return sqrtf(glm_vec3_distance2(a, b));
+  return glm_sqrtf(glm_vec3_distance2(a, b));
 }
 
 /*!
@@ -973,7 +973,7 @@ CGLM_INLINE
 void
 glm_vec3_smoothinterp(vec3 from, vec3 to, float t, vec3 dest) {
   vec3 s, v;
-    
+
   /* from + s * (to - from) */
   glm_vec3_broadcast(glm_smooth(t), s);
   glm_vec3_sub(to, from, v);

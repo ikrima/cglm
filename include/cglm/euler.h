@@ -79,18 +79,18 @@ glm_euler_angles(mat4 m, vec3 dest) {
 
   if (m20 < 1.0f) {
     if (m20 > -1.0f) {
-      thetaY = asinf(m20);
-      thetaX = atan2f(-m21, m22);
-      thetaZ = atan2f(-m10, m00);
+      thetaY = glm_asinf(m20);
+      thetaX = glm_atan2f(-m21, m22);
+      thetaZ = glm_atan2f(-m10, m00);
     } else { /* m20 == -1 */
       /* Not a unique solution */
       thetaY = -GLM_PI_2f;
-      thetaX = -atan2f(m01, m11);
+      thetaX = -glm_atan2f(m01, m11);
       thetaZ =  0.0f;
     }
   } else { /* m20 == +1 */
     thetaY = GLM_PI_2f;
-    thetaX = atan2f(m01, m11);
+    thetaX = glm_atan2f(m01, m11);
     thetaZ = 0.0f;
   }
 
@@ -111,9 +111,9 @@ glm_euler_xyz(vec3 angles, mat4 dest) {
   float cx, cy, cz,
         sx, sy, sz, czsx, cxcz, sysz;
 
-  sx   = sinf(angles[0]); cx = cosf(angles[0]);
-  sy   = sinf(angles[1]); cy = cosf(angles[1]);
-  sz   = sinf(angles[2]); cz = cosf(angles[2]);
+  sx   = glm_sinf(angles[0]); cx = glm_cosf(angles[0]);
+  sy   = glm_sinf(angles[1]); cy = glm_cosf(angles[1]);
+  sz   = glm_sinf(angles[2]); cz = glm_cosf(angles[2]);
 
   czsx = cz * sx;
   cxcz = cx * cz;
@@ -161,9 +161,9 @@ glm_euler_xzy(vec3 angles, mat4 dest) {
   float cx, cy, cz,
   sx, sy, sz, sxsy, cysx, cxsy, cxcy;
 
-  sx   = sinf(angles[0]); cx = cosf(angles[0]);
-  sy   = sinf(angles[1]); cy = cosf(angles[1]);
-  sz   = sinf(angles[2]); cz = cosf(angles[2]);
+  sx   = glm_sinf(angles[0]); cx = glm_cosf(angles[0]);
+  sy   = glm_sinf(angles[1]); cy = glm_cosf(angles[1]);
+  sz   = glm_sinf(angles[2]); cz = glm_cosf(angles[2]);
 
   sxsy = sx * sy;
   cysx = cy * sx;
@@ -201,9 +201,9 @@ glm_euler_yxz(vec3 angles, mat4 dest) {
   float cx, cy, cz,
         sx, sy, sz, cycz, sysz, czsy, cysz;
 
-  sx   = sinf(angles[0]); cx = cosf(angles[0]);
-  sy   = sinf(angles[1]); cy = cosf(angles[1]);
-  sz   = sinf(angles[2]); cz = cosf(angles[2]);
+  sx   = glm_sinf(angles[0]); cx = glm_cosf(angles[0]);
+  sy   = glm_sinf(angles[1]); cy = glm_cosf(angles[1]);
+  sz   = glm_sinf(angles[2]); cz = glm_cosf(angles[2]);
 
   cycz = cy * cz;
   sysz = sy * sz;
@@ -240,9 +240,9 @@ glm_euler_yzx(vec3 angles, mat4 dest) {
   float cx, cy, cz,
         sx, sy, sz, sxsy, cxcy, cysx, cxsy;
 
-  sx   = sinf(angles[0]); cx = cosf(angles[0]);
-  sy   = sinf(angles[1]); cy = cosf(angles[1]);
-  sz   = sinf(angles[2]); cz = cosf(angles[2]);
+  sx   = glm_sinf(angles[0]); cx = glm_cosf(angles[0]);
+  sy   = glm_sinf(angles[1]); cy = glm_cosf(angles[1]);
+  sz   = glm_sinf(angles[2]); cz = glm_cosf(angles[2]);
 
   sxsy = sx * sy;
   cxcy = cx * cy;
@@ -279,9 +279,9 @@ glm_euler_zxy(vec3 angles, mat4 dest) {
   float cx, cy, cz,
         sx, sy, sz, cycz, sxsy, cysz;
 
-  sx   = sinf(angles[0]); cx = cosf(angles[0]);
-  sy   = sinf(angles[1]); cy = cosf(angles[1]);
-  sz   = sinf(angles[2]); cz = cosf(angles[2]);
+  sx   = glm_sinf(angles[0]); cx = glm_cosf(angles[0]);
+  sy   = glm_sinf(angles[1]); cy = glm_cosf(angles[1]);
+  sz   = glm_sinf(angles[2]); cz = glm_cosf(angles[2]);
 
   cycz = cy * cz;
   sxsy = sx * sy;
@@ -317,9 +317,9 @@ glm_euler_zyx(vec3 angles, mat4 dest) {
   float cx, cy, cz,
         sx, sy, sz, czsx, cxcz, sysz;
 
-  sx   = sinf(angles[0]); cx = cosf(angles[0]);
-  sy   = sinf(angles[1]); cy = cosf(angles[1]);
-  sz   = sinf(angles[2]); cz = cosf(angles[2]);
+  sx   = glm_sinf(angles[0]); cx = glm_cosf(angles[0]);
+  sy   = glm_sinf(angles[1]); cy = glm_cosf(angles[1]);
+  sz   = glm_sinf(angles[2]); cz = glm_cosf(angles[2]);
 
   czsx = cz * sx;
   cxcz = cx * cz;
@@ -360,9 +360,9 @@ glm_euler_by_order(vec3 angles, glm_euler_seq ord, mat4 dest) {
         czsy, cxcz, czsx, cxsz,
         sysz;
 
-  sx = sinf(angles[0]); cx = cosf(angles[0]);
-  sy = sinf(angles[1]); cy = cosf(angles[1]);
-  sz = sinf(angles[2]); cz = cosf(angles[2]);
+  sx = glm_sinf(angles[0]); cx = glm_cosf(angles[0]);
+  sy = glm_sinf(angles[1]); cy = glm_cosf(angles[1]);
+  sz = glm_sinf(angles[2]); cz = glm_cosf(angles[2]);
 
   cycz = cy * cz; cysz = cy * sz;
   cysx = cy * sx; cxcy = cx * cy;

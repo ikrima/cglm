@@ -109,7 +109,7 @@ glm_perspective_rh_no(float fovy,
 
   glm_mat4_zero(dest);
 
-  f  = 1.0f / tanf(fovy * 0.5f);
+  f  = 1.0f / glm_tanf(fovy * 0.5f);
   fn = 1.0f / (nearZ - farZ);
 
   dest[0][0] = f / aspect;
@@ -355,7 +355,7 @@ void
 glm_persp_sizes_rh_no(mat4 proj, float fovy, vec4 dest) {
   float t, a, nearZ, farZ;
 
-  t = 2.0f * tanf(fovy * 0.5f);
+  t = 2.0f * glm_tanf(fovy * 0.5f);
   a = glm_persp_aspect(proj);
 
   glm_persp_decomp_z_rh_no(proj, &nearZ, &farZ);

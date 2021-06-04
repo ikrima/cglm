@@ -156,8 +156,8 @@ glm_quatv(versor q, float angle, vec3 axis) {
   float a, c, s;
 
   a = angle * 0.5f;
-  c = cosf(a);
-  s = sinf(a);
+  c = glm_cosf(a);
+  s = glm_sinf(a);
 
   glm_normalize_to(axis, k);
 
@@ -239,7 +239,7 @@ glm_quat_normalize_to(versor q, versor dest) {
     return;
   }
 
-  glm_vec4_scale(q, 1.0f / sqrtf(dot), dest);
+  glm_vec4_scale(q, 1.0f / glm_sqrtf(dot), dest);
 #endif
 }
 
@@ -379,7 +379,7 @@ glm_quat_angle(versor q) {
    cos(theta / 2) = w
    theta          = 2 * atan(sin(theta / 2) / cos(theta / 2))
    */
-  return 2.0f * atan2f(glm_quat_imaglen(q), glm_quat_real(q));
+  return 2.0f * glm_atan2f(glm_quat_imaglen(q), glm_quat_real(q));
 }
 
 /*!
@@ -667,7 +667,7 @@ glm_quat_slerp(versor from, versor to, float t, versor dest) {
   cosTheta = glm_quat_dot(from, to);
   glm_quat_copy(from, q1);
 
-  if (fabsf(cosTheta) >= 1.0f) {
+  if (glm_fabsf(cosTheta) >= 1.0f) {
     glm_quat_copy(q1, dest);
     return;
   }
@@ -677,18 +677,18 @@ glm_quat_slerp(versor from, versor to, float t, versor dest) {
     cosTheta = -cosTheta;
   }
 
-  sinTheta = sqrtf(1.0f - cosTheta * cosTheta);
+  sinTheta = glm_sqrtf(1.0f - cosTheta * cosTheta);
 
   /* LERP to avoid zero division */
-  if (fabsf(sinTheta) < 0.001f) {
+  if (glm_fabsf(sinTheta) < 0.001f) {
     glm_quat_lerp(from, to, t, dest);
     return;
   }
 
   /* SLERP */
-  angle = acosf(cosTheta);
-  glm_vec4_scale(q1, sinf((1.0f - t) * angle), q1);
-  glm_vec4_scale(to, sinf(t * angle), q2);
+  angle = glm_acosf(cosTheta);
+  glm_vec4_scale(q1, glm_sinf((1.0f - t) * angle), q1);
+  glm_vec4_scale(to, glm_sinf(t * angle), q2);
 
   glm_vec4_add(q1, q2, q1);
   glm_vec4_scale(q1, 1.0f / sinTheta, dest);
@@ -724,7 +724,7 @@ void
 glm_quat_for(vec3 dir, vec3 up, versor dest) {
   CGLM_ALIGN_MAT mat3 m;
 
-  glm_vec3_normalize_to(dir, m[2]); 
+  glm_vec3_normalize_to(dir, m[2]);
 
   /* No need to negate in LH, but we use RH here */
   glm_vec3_negate(m[2]);

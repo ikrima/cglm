@@ -81,9 +81,9 @@ glm_vec3_eq(vec3 v, float val) {
 CGLM_INLINE
 bool
 glm_vec3_eq_eps(vec3 v, float val) {
-  return fabsf(v[0] - val) <= GLM_FLT_EPSILON
-         && fabsf(v[1] - val) <= GLM_FLT_EPSILON
-         && fabsf(v[2] - val) <= GLM_FLT_EPSILON;
+  return glm_fabsf(v[0] - val) <= GLM_FLT_EPSILON
+         && glm_fabsf(v[1] - val) <= GLM_FLT_EPSILON
+         && glm_fabsf(v[2] - val) <= GLM_FLT_EPSILON;
 }
 
 /*!
@@ -120,9 +120,9 @@ glm_vec3_eqv(vec3 a, vec3 b) {
 CGLM_INLINE
 bool
 glm_vec3_eqv_eps(vec3 a, vec3 b) {
-  return fabsf(a[0] - b[0]) <= GLM_FLT_EPSILON
-         && fabsf(a[1] - b[1]) <= GLM_FLT_EPSILON
-         && fabsf(a[2] - b[2]) <= GLM_FLT_EPSILON;
+  return glm_fabsf(a[0] - b[0]) <= GLM_FLT_EPSILON
+         && glm_fabsf(a[1] - b[1]) <= GLM_FLT_EPSILON
+         && glm_fabsf(a[2] - b[2]) <= GLM_FLT_EPSILON;
 }
 
 /*!
@@ -172,7 +172,7 @@ glm_vec3_min(vec3 v) {
 CGLM_INLINE
 bool
 glm_vec3_isnan(vec3 v) {
-  return isnan(v[0]) || isnan(v[1]) || isnan(v[2]);
+  return glm_isnan(v[0]) || glm_isnan(v[1]) || glm_isnan(v[2]);
 }
 
 /*!
@@ -184,7 +184,7 @@ glm_vec3_isnan(vec3 v) {
 CGLM_INLINE
 bool
 glm_vec3_isinf(vec3 v) {
-  return isinf(v[0]) || isinf(v[1]) || isinf(v[2]);
+  return glm_isinf(v[0]) || glm_isinf(v[1]) || glm_isinf(v[2]);
 }
 
 /*!
@@ -223,9 +223,9 @@ glm_vec3_sign(vec3 v, vec3 dest) {
 CGLM_INLINE
 void
 glm_vec3_abs(vec3 v, vec3 dest) {
-  dest[0] = fabsf(v[0]);
-  dest[1] = fabsf(v[1]);
-  dest[2] = fabsf(v[2]);
+  dest[0] = glm_fabsf(v[0]);
+  dest[1] = glm_fabsf(v[1]);
+  dest[2] = glm_fabsf(v[2]);
 }
 
 /*!
@@ -237,9 +237,9 @@ glm_vec3_abs(vec3 v, vec3 dest) {
 CGLM_INLINE
 void
 glm_vec3_fract(vec3 v, vec3 dest) {
-  dest[0] = fminf(v[0] - floorf(v[0]), 0.999999940395355224609375f);
-  dest[1] = fminf(v[1] - floorf(v[1]), 0.999999940395355224609375f);
-  dest[2] = fminf(v[2] - floorf(v[2]), 0.999999940395355224609375f);
+  dest[0] = glm_fminf(v[0] - glm_floorf(v[0]), 0.999999940395355224609375f);
+  dest[1] = glm_fminf(v[1] - glm_floorf(v[1]), 0.999999940395355224609375f);
+  dest[2] = glm_fminf(v[2] - glm_floorf(v[2]), 0.999999940395355224609375f);
 }
 
 /*!
@@ -264,9 +264,9 @@ glm_vec3_hadd(vec3 v) {
 CGLM_INLINE
 void
 glm_vec3_sqrt(vec3 v, vec3 dest) {
-  dest[0] = sqrtf(v[0]);
-  dest[1] = sqrtf(v[1]);
-  dest[2] = sqrtf(v[2]);
+  dest[0] = glm_sqrtf(v[0]);
+  dest[1] = glm_sqrtf(v[1]);
+  dest[2] = glm_sqrtf(v[2]);
 }
 
 #endif /* cglm_vec3_ext_h */
